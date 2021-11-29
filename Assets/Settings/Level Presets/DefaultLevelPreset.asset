@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96eab623d26cf0f409f99885070ec395, type: 3}
+  m_Name: DefaultLevelPreset
+  m_EditorClassIdentifier: 
+  platformDistance: 3.5
+  platformPrefab: {fileID: 859589221145290043, guid: 99037ff8561393c4e8e6028077ab5ca9,
+    type: 3}
+  platformPerStage: 5
+  stageChangeAnimDuration: 2
+  levelStages:
+  - {fileID: 11400000, guid: e3dc01b2b02b11045a4ffec716ea0220, type: 2}
+  - {fileID: 11400000, guid: 5d9c7d7c6eea5e94f9df50cc69eb39bc, type: 2}
+  - {fileID: 11400000, guid: 633bc642dd1525141bf096fe5a0bda8d, type: 2}
+  - {fileID: 11400000, guid: 2645f953b06d203468058c7ff9c48137, type: 2}
