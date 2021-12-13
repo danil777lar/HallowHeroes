@@ -10,9 +10,10 @@ public class UIManager : MonoBehaviour
     public static UIManager Default => _default;
     #endregion
 
-    public enum State {Start, Process, Fail}
+    public enum State {Start, Shop, Process, Fail}
 
     [SerializeField] private Panel _startPanel;
+    [SerializeField] private Panel _shopPanel;
     [SerializeField] private Panel _processPanel;
     [SerializeField] private Panel _failPanel;
 
@@ -41,6 +42,7 @@ public class UIManager : MonoBehaviour
 
         _stateToPanel = new Dictionary<State, Panel>();
         _stateToPanel.Add(State.Start, _startPanel);
+        _stateToPanel.Add(State.Shop, _shopPanel);
         _stateToPanel.Add(State.Process, _processPanel);
         _stateToPanel.Add(State.Fail, _failPanel);
     }
