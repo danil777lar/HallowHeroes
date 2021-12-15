@@ -59,6 +59,7 @@ public class PlayerMovement : PlatformerGravity
         {
             _jumpsLeft--;
             Jump(_jumpForce);
+            SoundHolder.Default.PlayFromSoundPack("Jump");
         }
     }
 

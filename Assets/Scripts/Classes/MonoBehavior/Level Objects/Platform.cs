@@ -85,6 +85,7 @@ public class Platform : MonoBehaviour, ILandableSurface
                             _anim = transform.DOMoveY(_defaultHeight, 2f)
                                         .SetEase(Ease.OutElastic);
                         });
+            SoundHolder.Default.PlayFromSoundPack("Platform");
         }
     }
 }

@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class PlayerLifecycle : MonoBehaviour
 {
+    [SerializeField] private Transform _bodyHolder;
+    [SerializeField] private CharacterHolder _characterHolder;
     [SerializeField] private PlayerMovement _playerMovement;
-    [SerializeField] private PlayerAnimation _playerAnimation;
 
     private bool _failed;
 
+
+    private void Awake()
+    {
+        GameObject instance = Instantiate(_characterHolder.Current.characterPrefab);
+        instance.transform.SetParent(_bodyHolder);
+        instance.transform.localPosition = Vector3.zero;
+    }
 
     private void OnEnable()
     {
@@ -29,7 +37,6 @@ public class PlayerLifecycle : MonoBehaviour
                 _failed = true;
                 UIManager.Default.CurentState = UIManager.State.Fail;
                 _playerMovement.enabled = false;
-                _playerAnimation.PlayFailAnim(transform.position - collision.transform.position);
             }
         }
     }
@@ -40,7 +47,6 @@ public class PlayerLifecycle : MonoBehaviour
         if (newState == UIManager.State.Process) 
         {
             _playerMovement.enabled = true;
-            _playerAnimation.enabled = true;
         }
     }
 }

@@ -17,6 +17,9 @@ public class CameraMovement : MonoBehaviour
 
     private void Awake()
     {
+        Canvas canvas = UIManager.Default.GetComponentInChildren<Canvas>();
+        canvas.worldCamera = Camera.main;
+
         Vector2 screenSizeWorld = Camera.main.ViewportToWorldPoint(new Vector3(1f, 1f, 0f)) - Camera.main.ViewportToWorldPoint(Vector3.zero);
 
         _backgroundColor.transform.localScale = new Vector3(screenSizeWorld.x, screenSizeWorld.y, 1f);

@@ -15,7 +15,7 @@ MonoBehaviour:
   platformDistance: 3.5
   platformPrefab: {fileID: 859589221145290043, guid: 99037ff8561393c4e8e6028077ab5ca9,
     type: 3}
-  platformPerStage: 5
+  platformPerStage: 15
   stageChangeAnimDuration: 2
   levelStages:
   - {fileID: 11400000, guid: e3dc01b2b02b11045a4ffec716ea0220, type: 2}

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a996c492705604889e78d95815b589, type: 3}
+  m_Name: Sounds
+  m_EditorClassIdentifier: 
+  soundPacks:
+  - key: Platform
+    sounds:
+    - clip: {fileID: 8300000, guid: ae34389b266b64e4a88f5ac5b4b67db8, type: 3}
+      volume: 1
+    - clip: {fileID: 8300000, guid: 2f6d42d06b98db04aa1e3b65eebfc7f8, type: 3}
+      volume: 1
+    - clip: {fileID: 8300000, guid: 51ced9371e9ec814cbcf8b8b4f62a25f, type: 3}
+      volume: 1
+    - clip: {fileID: 8300000, guid: d89dc7083a8e7be43a7e52390c4a721a, type: 3}
+      volume: 1
+    - clip: {fileID: 8300000, guid: 4a98b1478cb00fc4abfd67e2e82f0001, type: 3}
+      volume: 1
+    - clip: {fileID: 8300000, guid: 31bfb813ad3743c4ba0c94d8a4012ccc, type: 3}
+      volume: 1
+  - key: Jump
+    sounds:
+    - clip: {fileID: 8300000, guid: 580255a35092c7445b0f539ae7d87030, type: 3}
+      volume: 1
