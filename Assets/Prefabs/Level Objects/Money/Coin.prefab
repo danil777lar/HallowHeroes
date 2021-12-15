@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f0ce59fc5e8da340a9509f5b9927531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _value: 1
+  _value: 20
   _coinSprite: {fileID: 9054460193491729796}
 --- !u!50 &9054460194188393917
 Rigidbody2D:
