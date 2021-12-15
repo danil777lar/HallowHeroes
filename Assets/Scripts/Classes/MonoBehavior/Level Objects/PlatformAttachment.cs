@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PlarformAttachment : MonoBehaviour
+public abstract class PlatformAttachment : MonoBehaviour
 {
     protected float boundsWidth;
 

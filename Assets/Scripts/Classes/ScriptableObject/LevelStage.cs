@@ -10,9 +10,15 @@ public class LevelStage : ScriptableObject
     public Color paralaxStripColor;
     public Color backroundColor;
     public PlatformColors platformColors;
+
     [Header("Enemies")]
     public float enemySpawnChance;
-    public List<PlarformAttachment> enemyPrefabs;
+    public List<PlatformAttachment> enemyPrefabs;
+
     [Header("Environments")]
-    public List<PlarformAttachment> environmentPrefabs;
+    public List<PlatformAttachment> environmentPrefabs;
+
+    [Header("Money")]
+    public float moneySpawnChance;
+    public PlatformAttachment moneyPrefab;
 }

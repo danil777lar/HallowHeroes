@@ -14,6 +14,11 @@ public class ProcessPanel : MonoBehaviour, IPointerDownHandler
 
     [SerializeField] private TextMeshProUGUI _curentScore;
     [SerializeField] private TextMeshProUGUI _bestScore;
+    [SerializeField] private TextMeshProUGUI _curentCoins;
+    [SerializeField] private TextMeshProUGUI _totalCoins;
+
+    private int _coins;
+    private MoneyAnimation _moneyAnim;
 
     public Action OnTap;
 
@@ -26,6 +31,7 @@ public class ProcessPanel : MonoBehaviour, IPointerDownHandler
     private void Start()
     {
         GetComponent<Panel>().onPanelShow += HandleOnPanelShow;
+        _moneyAnim = GetComponent<MoneyAnimation>();
     }
 
 
@@ -34,11 +40,32 @@ public class ProcessPanel : MonoBehaviour, IPointerDownHandler
         _curentScore.text = "" + score;
     }
 
+    public void PlayCoinAnim(int count, Vector3 position) 
+    {
+        for (int i = 0; i < count; i++) 
+        {
+            _moneyAnim.PlayMoneyUpAnim(position, () => 
+            {
+                _coins++;
+                PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money", 0) + 1);
+                UpdateMoneyUI();
+            }, false);
+        }
+    }
+
 
     private void HandleOnPanelShow() 
     {
+        _coins = 0;
         _curentScore.text = "0";
         _bestScore.text = $"best {PlayerPrefs.GetInt("BestScore", 0)}";
+        UpdateMoneyUI();
+    }
+
+    private void UpdateMoneyUI() 
+    {
+        _curentCoins.text = $"{_coins}<sprite index=0>";
+        _totalCoins.text = $"total {PlayerPrefs.GetInt("Money", 0)}";
     }
 
     void IPointerDownHandler.OnPointerDown(PointerEventData eventData)

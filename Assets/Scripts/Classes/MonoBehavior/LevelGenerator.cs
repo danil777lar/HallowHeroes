@@ -45,9 +45,7 @@ public class LevelGenerator : MonoBehaviour
         Platform instance = Instantiate(_levelPreset.platformPrefab);
         instance.transform.SetParent(_platformHolder);
         instance.transform.localPosition = Vector3.up * platformHeight;
-        List<PlarformAttachment> enemy = _levelPreset.levelStages[_currentStage].enemyPrefabs;
-        List<PlarformAttachment> env = _levelPreset.levelStages[_currentStage].environmentPrefabs;
-        instance.Init(env, enemy, _levelPreset.levelStages[_currentStage].enemySpawnChance, isStartPlatform);
+        instance.Init(_levelPreset.levelStages[_currentStage], isStartPlatform);
         instance.SetColor(_levelPreset.levelStages[_currentStage].platformColors, 0f);
         instance.OnLanded += HandleOnPlatformLanded;
         _platforms.Add(instance);

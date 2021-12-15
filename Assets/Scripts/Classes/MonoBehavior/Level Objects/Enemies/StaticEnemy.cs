@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StaticEnemy : PlarformAttachment
+public class StaticEnemy : PlatformAttachment
 {
     [SerializeField] private BoxCollider2D _collider;
     [SerializeField] private Transform _sprite;

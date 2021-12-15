@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnvironmentObject : PlarformAttachment
+public class EnvironmentObject : PlatformAttachment
 {
     [SerializeField] private SpriteRenderer _rend;
     [SerializeField] private List<Sprite> _sprites;

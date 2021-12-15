@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ShopPanel : MonoBehaviour
 {
     [SerializeField] private Panel _panel;
     [SerializeField] private Button _backButton;
     [SerializeField] private ScrollRect _scroll;
+    [SerializeField] private TextMeshProUGUI _counsText;
     [SerializeField] private CharacterShopButton _buttonPrefab;
     [SerializeField] private CharacterHolder _characterHolder;
 
@@ -21,6 +23,12 @@ public class ShopPanel : MonoBehaviour
     {
         Build();
         _backButton.onClick.AddListener(HandleOnBackButton);
+    }
+
+
+    public void UpdateMoneyUI() 
+    {
+        _counsText.text = $"{PlayerPrefs.GetInt("Money", 0)}<sprite index=0>";
     }
 
 
@@ -50,7 +58,7 @@ public class ShopPanel : MonoBehaviour
 
     private void HandleOnPanelShow()
     {
-
+        UpdateMoneyUI();
     }
 
     private void HandleOnBackButton() 

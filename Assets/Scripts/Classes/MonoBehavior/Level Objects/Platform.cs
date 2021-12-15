@@ -27,28 +27,35 @@ public class Platform : MonoBehaviour, ILandableSurface
     }
 
 
-    public void Init(List<PlarformAttachment> environments, List<PlarformAttachment> enemies, float spawnChance, bool startPlatform)
+    public void Init(LevelStage stage, bool startPlatform)
     {
         _startPlatform = startPlatform;
         Vector3 targetScale = _platformBody.transform.localScale;
         targetScale.x = (Camera.main.ViewportToWorldPoint(Vector3.right) - Camera.main.ViewportToWorldPoint(Vector3.zero)).x;
         _platformBody.transform.localScale = targetScale;
 
-        if (!startPlatform && enemies.Count > 0 && spawnChance >= UnityEngine.Random.Range(0f, 1f)) 
+        if (!startPlatform && stage.enemyPrefabs.Count > 0 && stage.enemySpawnChance >= UnityEngine.Random.Range(0f, 1f)) 
         {
-            PlarformAttachment instance = Instantiate(enemies[UnityEngine.Random.Range(0, enemies.Count)]);
+            PlatformAttachment instance = Instantiate(stage.enemyPrefabs[UnityEngine.Random.Range(0, stage.enemyPrefabs.Count)]);
             instance.transform.SetParent(transform);
             instance.AnchorToPlatform(_platformBody.bounds.max.y);
         }
 
-        if (environments != null && environments.Count > 0)
+        if (stage.environmentPrefabs != null && stage.environmentPrefabs.Count > 0)
         {
             for (int i = 0; i < UnityEngine.Random.Range(1, 5); i++)
             {
-                PlarformAttachment instance = Instantiate(environments[UnityEngine.Random.Range(0, environments.Count)]);
+                PlatformAttachment instance = Instantiate(stage.environmentPrefabs[UnityEngine.Random.Range(0, stage.environmentPrefabs.Count)]);
                 instance.transform.SetParent(transform);
                 instance.AnchorToPlatform(_platformBody.bounds.max.y);
             }
+        }
+
+        if (!startPlatform && stage.moneyPrefab && stage.moneySpawnChance >= UnityEngine.Random.Range(0f, 1f))
+        {
+            PlatformAttachment instance = Instantiate(stage.moneyPrefab);
+            instance.transform.SetParent(transform);
+            instance.AnchorToPlatform(_platformBody.bounds.max.y);
         }
 
         _numText.transform.parent.localPosition = new Vector3(-(_platformBody.transform.localScale.x / 2f) + 0.5f, 0f, 0f);
