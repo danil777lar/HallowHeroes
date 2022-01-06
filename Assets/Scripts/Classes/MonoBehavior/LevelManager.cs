@@ -24,7 +24,12 @@ public class LevelManager : MonoBehaviour
     public void Restart() 
     {
         OnRestart?.Invoke();
-        Destroy(transform.GetChild(0).gameObject);
+        List<Transform> childList = new List<Transform>();
+        foreach (var v in transform)
+            childList.Add(v as Transform);
+        foreach (var v in childList)
+            DestroyImmediate(v.gameObject);
+        
         Instantiate(_levelPrefab).transform.SetParent(transform);
     }
 }

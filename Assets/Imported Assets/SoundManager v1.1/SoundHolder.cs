@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [Serializable, CreateAssetMenu(menuName = "Scriptables/SoundHolder")]
 public class SoundHolder : DataHolder
@@ -22,26 +23,29 @@ public class SoundHolder : DataHolder
         public List<SoundOption> sounds;
     }
 
+    public bool soundActive;
     public List<SoundPack> soundPacks;
 
 
     public override void Init()
     { 
         _default = this;
+        soundActive = true;
     }
 
     /// <summary>
     /// Спавнит GameObject c AudioSource, помещает в него рандомный клип из набора с соответствующим названем, задает настройки громкости.
     /// Объект автоматически удаляется после проигрывания клипа.
     /// </summary>
-    public AudioSource PlayFromSoundPack(string packName, bool isLoop = false) 
+    public AudioSource PlayFromSoundPack(string packName, bool isLoop = false)
     {
+        if (!soundActive) 
+            return null;
+        
         SoundPack pack = soundPacks.Find((p) => p.key == packName);
-
         if (pack == null || pack.sounds.Count <= 0) return null;
         SoundOption sound = pack.sounds[UnityEngine.Random.Range(0, pack.sounds.Count)];
         if (!sound.clip) return null;
-
         return SpawnSoundSource(sound.clip, sound.volume, isLoop);
     }
 

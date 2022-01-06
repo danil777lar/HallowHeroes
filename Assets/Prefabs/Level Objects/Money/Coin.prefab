@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 9054460193491729801}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.5, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children: []
   m_Father: {fileID: 9054460194188393919}
   m_RootOrder: 0
@@ -143,8 +143,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f0ce59fc5e8da340a9509f5b9927531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _value: 20
+  _value: 1
   _coinSprite: {fileID: 9054460193491729796}
+  _partsPrefab: {fileID: 7954697050119911739, guid: dd048a527bc9f31408315491cea3a1fa,
+    type: 3}
+  _animSpeed: 1
+  _animScale: 0.2
 --- !u!50 &9054460194188393917
 Rigidbody2D:
   serializedVersion: 4

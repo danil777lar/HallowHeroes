@@ -56,6 +56,7 @@ public class Platform : MonoBehaviour, ILandableSurface
             PlatformAttachment instance = Instantiate(stage.moneyPrefab);
             instance.transform.SetParent(transform);
             instance.AnchorToPlatform(_platformBody.bounds.max.y);
+            instance.transform.SetParent(LevelManager.Default.transform);
         }
 
         _numText.transform.parent.localPosition = new Vector3(-(_platformBody.transform.localScale.x / 2f) + 0.5f, 0f, 0f);

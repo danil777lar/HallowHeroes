@@ -10,6 +10,11 @@ public class StartPanel : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Button _rateButton;
     [SerializeField] private Button _soundButton;
 
+    [Header("Sound sprites")] 
+    [SerializeField] private Image _soundIcon;
+    [SerializeField] private Sprite _soundEnableSprite;
+    [SerializeField] private Sprite _soundDisableSprite;
+    
 
     private void Start()
     {
@@ -28,9 +33,10 @@ public class StartPanel : MonoBehaviour, IPointerClickHandler
 
     }
 
-    private void HandleOnSoundButtonClick() 
+    private void HandleOnSoundButtonClick()
     {
-
+        SoundHolder.Default.soundActive = !SoundHolder.Default.soundActive;
+        _soundIcon.sprite = SoundHolder.Default.soundActive ? _soundEnableSprite : _soundDisableSprite;
     }
 
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
