@@ -18,12 +18,9 @@ MonoBehaviour:
     topColor: {r: 0.41099998, g: 0.3314681, b: 0.31770298, a: 1}
     bottomColor: {r: 0.6509434, g: 0.57546175, b: 0.43293878, a: 1}
   enemySpawnChance: 0.8
-  enemyPrefabs:
-  - {fileID: 6643880026746942187, guid: d21d50ac8af61db4d89bc13873514e3f, type: 3}
-  - {fileID: 6643880026746942187, guid: b6fd68b065e1694458e0fc00b98da29e, type: 3}
-  - {fileID: 6643880026746942187, guid: 1eb2473b42a5b2d4585782a8486d08f2, type: 3}
+  enemyPrefabs: []
   environmentPrefabs:
   - {fileID: 6473819816051660550, guid: 17e057a6693a17a4fb0712259efbdeb8, type: 3}
-  moneySpawnChance: 0.5
+  moneySpawnChance: 0
   moneyPrefab: {fileID: 9054460194188393918, guid: c7271e3e452ca2248992123e845afc69,
     type: 3}
