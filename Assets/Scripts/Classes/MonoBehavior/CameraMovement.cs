@@ -9,9 +9,9 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private float _movementHardness;
     [SerializeField] private float _paralaxStripWidth;
     [SerializeField] private float _paralaxStripOffsetStrenght;
-    [SerializeField] private SpriteRenderer _backgroundColor;
     [SerializeField] private List<SpriteRenderer> _paralaxStrips;
 
+    private BoxCollider2D _back;
     private Material _paralaxStripMaterial;
 
 
@@ -22,7 +22,6 @@ public class CameraMovement : MonoBehaviour
 
         Vector2 screenSizeWorld = Camera.main.ViewportToWorldPoint(new Vector3(1f, 1f, 0f)) - Camera.main.ViewportToWorldPoint(Vector3.zero);
 
-        _backgroundColor.transform.localScale = new Vector3(screenSizeWorld.x, screenSizeWorld.y, 1f);
         _paralaxStripMaterial = Instantiate(_paralaxStrips[0].sharedMaterial);
         for (int i = 0; i < _paralaxStrips.Count; i++) 
         {
@@ -47,11 +46,19 @@ public class CameraMovement : MonoBehaviour
     }
 
 
-    public void SetColors(Color backgroundColor, Color stripColor, float duration) 
+    public void SetColors(BoxCollider2D backgroundPrefab, Color stripColor, float duration) 
     {
-        foreach (SpriteRenderer strip in _paralaxStrips) 
+        foreach (var strip in _paralaxStrips)
+        {
             strip.DOColor(stripColor, duration);
+        }
 
-        _backgroundColor.DOColor(backgroundColor, duration);
+        _back = Instantiate(backgroundPrefab);
+        _back.transform.SetParent(transform);
+        _back.transform.localPosition = Vector3.forward * 10f;
+        Vector3 scale = Vector3.one;
+        scale.x = (Camera.main.ViewportToWorldPoint(Vector3.one).x - Camera.main.ViewportToWorldPoint(Vector3.zero).x) / _back.size.x;
+        scale.y = (Camera.main.ViewportToWorldPoint(Vector3.one).y - Camera.main.ViewportToWorldPoint(Vector3.zero).y) / _back.size.y;
+        _back.transform.localScale = scale;
     }
 }

@@ -8,7 +8,7 @@ public class LevelStage : ScriptableObject
 {
     [Header("Colors")]
     public Color paralaxStripColor;
-    public Color backroundColor;
+    public BoxCollider2D backgroundPrefab;
     public PlatformColors platformColors;
 
     [Header("Enemies")]

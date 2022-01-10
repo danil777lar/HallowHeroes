@@ -83,9 +83,9 @@ public class LevelGenerator : MonoBehaviour
 
     private void SetCameraColors(float duration) 
     {
-        Color backColor = _levelPreset.levelStages[_currentStage].backroundColor;
+        BoxCollider2D back = _levelPreset.levelStages[_currentStage].backgroundPrefab;
         Color stripColor = _levelPreset.levelStages[_currentStage].paralaxStripColor;
-        _camera.SetColors(backColor, stripColor, duration);
+        _camera.SetColors(back, stripColor, duration);
     }
 
     private void HandleOnLevelRestart()

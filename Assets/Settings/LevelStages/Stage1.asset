@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7ddfd340943b5847b990cbff2cf0207, type: 3}
   m_Name: Stage1
   m_EditorClassIdentifier: 
-  paralaxStripColor: {r: 0.24230155, g: 0.31132078, b: 0.26530796, a: 1}
-  backroundColor: {r: 1, g: 1, b: 1, a: 0}
+  paralaxStripColor: {r: 0.18516801, g: 0.22752458, b: 0.284, a: 1}
+  backgroundPrefab: {fileID: 4198189842639579515, guid: 0ab0476a1b3fc034396f869da915d8f6,
+    type: 3}
   platformColors:
-    topColor: {r: 0.37773585, g: 0.56, b: 0.40447146, a: 1}
-    bottomColor: {r: 0.48393556, g: 0.8207547, b: 0.6122476, a: 1}
+    topColor: {r: 0.16484399, g: 0.19191085, b: 0.22799999, a: 1}
+    bottomColor: {r: 0.23969601, g: 0.259079, b: 0.284, a: 1}
   enemySpawnChance: 0.4
   enemyPrefabs:
   - {fileID: 2647100533397208303, guid: c62ebf531fedbdf4db33e08c04abf4ac, type: 3}
-  environmentPrefabs:
-  - {fileID: 6473819816051660550, guid: 9ea60abe6f720c84b83ed84445380dc7, type: 3}
+  - {fileID: 2786171734243862598, guid: 5e733bbbd4e001949bfd7e1ef43854ed, type: 3}
+  environmentPrefabs: []
   moneySpawnChance: 0.1
   moneyPrefab: {fileID: 9054460194188393918, guid: c7271e3e452ca2248992123e845afc69,
     type: 3}
