@@ -53,6 +53,8 @@ public class CameraMovement : MonoBehaviour
             strip.DOColor(stripColor, duration);
         }
 
+        if (_back) Destroy(_back.gameObject);
+
         _back = Instantiate(backgroundPrefab);
         _back.transform.SetParent(transform);
         _back.transform.localPosition = Vector3.forward * 10f;

@@ -67,7 +67,7 @@ public class LevelGenerator : MonoBehaviour
         platform.SetNumText(_platformsPassed);
         ProcessPanel.Default.UpdateScore(_platformsPassed);
         int newStage = _platformsPassed / _levelPreset.platformPerStage;
-        if (newStage != _currentStage) 
+        if (newStage != _currentStage && _levelPreset.levelStages.Count > 1) 
         {
             ChangeStage(newStage);
         }

@@ -19,6 +19,3 @@ MonoBehaviour:
   stageChangeAnimDuration: 2
   levelStages:
   - {fileID: 11400000, guid: e3dc01b2b02b11045a4ffec716ea0220, type: 2}
-  - {fileID: 11400000, guid: 5d9c7d7c6eea5e94f9df50cc69eb39bc, type: 2}
-  - {fileID: 11400000, guid: 633bc642dd1525141bf096fe5a0bda8d, type: 2}
-  - {fileID: 11400000, guid: 2645f953b06d203468058c7ff9c48137, type: 2}
