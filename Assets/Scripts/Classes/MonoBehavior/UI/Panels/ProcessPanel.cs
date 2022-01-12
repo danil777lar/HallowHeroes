@@ -32,6 +32,8 @@ public class ProcessPanel : MonoBehaviour, IPointerDownHandler
     {
         GetComponent<Panel>().onPanelShow += HandleOnPanelShow;
         _moneyAnim = GetComponent<MoneyAnimation>();
+        _coins = 0;
+        UpdateMoneyUI();
     }
 
 

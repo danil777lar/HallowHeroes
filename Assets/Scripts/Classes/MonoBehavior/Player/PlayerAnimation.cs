@@ -8,10 +8,13 @@ using DG.Tweening;
 [RequireComponent(typeof(NamedAnimancerComponent))]
 public class PlayerAnimation : MonoBehaviour
 {
+    [Header("Clips")]
     [SerializeField] private AnimationClip _idleAnim;
     [SerializeField] private AnimationClip _runAnim;
     [SerializeField] private AnimationClip _jumpAnim;
     [SerializeField] private AnimationClip _deathAnim;
+    [Header("Parts")] 
+    [SerializeField] private ParticleSystem _trailParts;
 
     private bool _computePause = false;
     private NamedAnimancerComponent _animancer;
@@ -25,10 +28,12 @@ public class PlayerAnimation : MonoBehaviour
         {
             _movement.OnJump += () =>
             {
+                _trailParts.Play();
                 _animancer.Stop(_jumpAnim);
                 _animancer.Play(_jumpAnim, 0.1f);
                 StopAllCoroutines();
                 StartCoroutine(ComputePauseCoroutine(0.33f));
+                StartCoroutine(DisablePartsCoroutine(0.5f));
             };
         }
 
@@ -56,7 +61,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void ComputeAnimation(out AnimationClip clip, out float fade)
     {
-        fade = 0.5f;
+        fade = 1f;
         clip = _idleAnim;
 
         if (_movement && _movement.enabled && _movement.IsGrounded)
@@ -71,5 +76,11 @@ public class PlayerAnimation : MonoBehaviour
         _computePause = true;
         yield return new WaitForSeconds(delay);
         _computePause = false;
+    }
+
+    private IEnumerator DisablePartsCoroutine(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        _trailParts.Stop();
     }
 }
