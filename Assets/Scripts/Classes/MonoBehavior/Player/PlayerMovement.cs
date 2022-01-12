@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,6 +21,8 @@ public class PlayerMovement : PlatformerGravity
     private int _horizontalDirection = 1;
     private Camera _camera;
 
+    public Action OnJump;
+    
 
     private void Awake()
     {
@@ -59,6 +62,7 @@ public class PlayerMovement : PlatformerGravity
         {
             _jumpsLeft--;
             Jump(_jumpForce);
+            OnJump?.Invoke();
             SoundHolder.Default.PlayFromSoundPack("Jump");
         }
     }
