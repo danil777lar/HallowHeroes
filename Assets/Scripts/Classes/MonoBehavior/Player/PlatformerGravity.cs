@@ -8,7 +8,7 @@ using UnityEngine;
 public class PlatformerGravity : MonoBehaviour
 {
     [Header("Gravity")]
-    [SerializeField] private float _gravityScale;
+    [SerializeField] protected float _gravityScale;
 
     private ContactFilter2D _filter;
     private Transform _defaultParent;
@@ -16,7 +16,7 @@ public class PlatformerGravity : MonoBehaviour
     protected BoxCollider2D _collider;
 
     public bool IsGrounded { get; private set; }
-    public float VelocityY { get; private set; }
+    public float VelocityY { get; protected set; }
     public Action OnGrounded;
 
 
@@ -72,11 +72,5 @@ public class PlatformerGravity : MonoBehaviour
         }
         IsGrounded = isGroundedThisFrame;
         transform.position = new Vector2(transform.position.x, transform.position.y + deltaPosition); 
-    }
-
-
-    protected void Jump(float _jumpForce) 
-    {
-        VelocityY = _jumpForce;
     }
 }

@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class PlayerLifecycle : MonoBehaviour
@@ -9,6 +11,8 @@ public class PlayerLifecycle : MonoBehaviour
     [SerializeField] private PlayerMovement _playerMovement;
 
     private bool _failed;
+    
+    public Action OnFail;
 
 
     private void Awake()
@@ -36,11 +40,12 @@ public class PlayerLifecycle : MonoBehaviour
             {
                 _failed = true;
                 UIManager.Default.CurentState = UIManager.State.Fail;
-                _playerMovement.enabled = false;
+                _playerMovement.PlayDeathAnim(collision);
+                OnFail?.Invoke();
             }
         }
     }
-
+    
 
     private void HandleOnUIStateChanged(UIManager.State oldState, UIManager.State newState) 
     {

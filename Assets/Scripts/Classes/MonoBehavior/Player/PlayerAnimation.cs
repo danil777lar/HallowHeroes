@@ -11,6 +11,7 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField] private AnimationClip _idleAnim;
     [SerializeField] private AnimationClip _runAnim;
     [SerializeField] private AnimationClip _jumpAnim;
+    [SerializeField] private AnimationClip _deathAnim;
 
     private bool _computePause = false;
     private NamedAnimancerComponent _animancer;
@@ -24,9 +25,20 @@ public class PlayerAnimation : MonoBehaviour
         {
             _movement.OnJump += () =>
             {
+                _animancer.Stop(_jumpAnim);
                 _animancer.Play(_jumpAnim, 0.1f);
                 StopAllCoroutines();
-                StartCoroutine(ComputePauseCoroutine(0.1f));
+                StartCoroutine(ComputePauseCoroutine(0.33f));
+            };
+        }
+
+        PlayerLifecycle lifecycle = GetComponentInParent<PlayerLifecycle>();
+        if (lifecycle)
+        {
+            lifecycle.OnFail += () =>
+            {
+                _animancer.Play(_deathAnim, 0.1f);
+                _computePause = true;
             };
         }
     }

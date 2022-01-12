@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 public class PlayerMovement : PlatformerGravity
 {
@@ -17,8 +19,10 @@ public class PlayerMovement : PlatformerGravity
     [SerializeField] private float _horizontalSpeed;
     [SerializeField] private Transform _playerSprite;
 
+    private bool _isDead;
     private int _jumpsLeft;
     private int _horizontalDirection = 1;
+    private Vector2 _positionLastFrame;
     private Camera _camera;
 
     public Action OnJump;
@@ -40,9 +44,25 @@ public class PlayerMovement : PlatformerGravity
 
     protected override void FixedUpdate()
     {
-        base.FixedUpdate();
+        if (!_isDead)
+        {
+            base.FixedUpdate();
+            HorizontalMovement();
+        }
+        else
+        {
+            VelocityY -= 9.8f * _gravityScale * Time.fixedDeltaTime;
+            Vector2 targetPosition = transform.position;
+            targetPosition.y += VelocityY * Time.fixedDeltaTime;
+            transform.position = targetPosition;
 
-        HorizontalMovement();
+            Vector2 dir = _positionLastFrame - (Vector2)transform.position;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            angle += _horizontalDirection == -1 ? 180f : 0f;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(Vector3.forward * angle), Time.fixedDeltaTime * 5f);
+            
+            _positionLastFrame = transform.position;
+        }
     }
 
     private void OnEnable()
@@ -56,12 +76,25 @@ public class PlayerMovement : PlatformerGravity
     }
 
 
+    public void PlayDeathAnim(Collider2D other)
+    {
+        _isDead = true;
+        _positionLastFrame = other.transform.TransformPoint((other as BoxCollider2D).offset);
+        Vector2 normal = transform.TransformPoint(_collider.offset) - other.transform.TransformPoint((other as BoxCollider2D).offset);
+        normal = normal.normalized;
+        VelocityY = normal.y * 10f;
+        transform.DOMoveX(transform.position.x + Mathf.Sign(normal.x) * 3f, 1f)
+            .SetEase(Ease.OutSine)
+            .SetUpdate(UpdateType.Fixed);
+    }
+
+
     private void HandleOnUserTap()
     {
         if (_jumpsLeft > 0)
         {
             _jumpsLeft--;
-            Jump(_jumpForce);
+            VelocityY = _jumpForce;
             OnJump?.Invoke();
             SoundHolder.Default.PlayFromSoundPack("Jump");
         }
