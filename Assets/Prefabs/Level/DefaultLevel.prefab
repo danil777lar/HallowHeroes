@@ -97,6 +97,8 @@ MonoBehaviour:
   _jumpCount: 2
   _horizontalSpeed: 3
   _playerSprite: {fileID: 2721627088239304371}
+  _punchParts: {fileID: 8971569679487751192, guid: 0a8dd76557af5c344823127b6d0d05fd,
+    type: 3}
 --- !u!50 &8565676931215449009
 Rigidbody2D:
   serializedVersion: 4

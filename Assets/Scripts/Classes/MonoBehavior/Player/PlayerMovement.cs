@@ -18,6 +18,8 @@ public class PlayerMovement : PlatformerGravity
     [Header("Movement")]
     [SerializeField] private float _horizontalSpeed;
     [SerializeField] private Transform _playerSprite;
+    [Header("Effects")]
+    [SerializeField] private ParticleSystem _punchParts;
 
     private bool _isDead;
     private int _jumpsLeft;
@@ -81,6 +83,12 @@ public class PlayerMovement : PlatformerGravity
         _isDead = true;
         _positionLastFrame = other.transform.TransformPoint((other as BoxCollider2D).offset);
         Vector2 normal = transform.TransformPoint(_collider.offset) - other.transform.TransformPoint((other as BoxCollider2D).offset);
+        
+        ParticleSystem parts = Instantiate(_punchParts);
+        parts.transform.SetParent(LevelManager.Default.transform);
+        parts.transform.position = transform.TransformPoint(_collider.offset) + ((Vector3)normal / 2f);
+        Destroy(parts.gameObject, parts.main.duration);
+        
         normal = normal.normalized;
         VelocityY = normal.y * 10f;
         transform.DOMoveX(transform.position.x + Mathf.Sign(normal.x) * 3f, 1f)

@@ -1,10 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public abstract class PlatformAttachment : MonoBehaviour
 {
     protected float _boundsWidth;
+
+    public Action OnAttached;
+    
 
     public virtual void AnchorToPlatform(float surfacePosition) 
     {
@@ -20,5 +25,7 @@ public abstract class PlatformAttachment : MonoBehaviour
             transform.localScale = targetScale;
         }
         transform.localPosition = targetPosition;
+        
+        OnAttached?.Invoke();
     }
 }
